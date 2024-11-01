@@ -22,7 +22,7 @@ end
 module.AddESP = function(part, color, config)
     -- config = {["Type"] = "Outlines", ["FillType"] = "Model"}
     warn("> Adding ESP for "..part.Name)
-    if part:FindFirstChild("esp") then print("ESP object Already Exists.") return end
+    if part:FindFirstChild("esp") then print("ESP object Already Exists.") part:FindFirstChild("esp"):Destroy() end
 
     local espObject = Instance.new("Highlight")
     if config["Type"] == "Outlines" then 
