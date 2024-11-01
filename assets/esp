@@ -1,0 +1,82 @@
+--// Set up
+local Players = game.Players
+local options 
+module = {}
+
+
+module.init = function()
+    
+    if getgenv().Settings then 
+        options = getgenv().Settings
+    end
+    if not getgenv().Settings then 
+       options = {["Type"] = "Outlines", ["FillType"] = "Model"}
+    end
+
+    warn("> Settings found.")
+    warn(">> Type: "..options["Type"])
+    warn(">> FillType: "..options["FillType"])
+
+end
+
+module.AddESP = function(part, color, config)
+    -- config = {["Type"] = "Outlines", ["FillType"] = "Model"}
+    warn("> Adding ESP for "..part.Name)
+    if part:FindFirstChild("esp") then print("ESP object Already Exists.") return end
+
+    local espObject = Instance.new("Highlight")
+    if config["Type"] == "Outlines" then 
+        espObject.FillTransparency = 1
+        espObject.OutlineColor = color
+        espObject.Parent = part
+        espObject.Name = "esp"
+    end
+    if config["Type"] == "Fill" then 
+        if config["FillType"] == "Model" then 
+            espObject.FillTransparency = 0.5
+            espObject.FillColor = color
+            espObject.OutlineColor = Color3.fromRGB(255, 255, 255)
+            espObject.Parent = part
+            espObject.Name = "esp"
+        end
+        if config["FillType"] == "Limb" then 
+            for i, v in pairs(part:GetChildren()) do 
+               if v:isA("BasePart") then 
+                    local limbespObject = Instance.new("Highlight")
+                    print(v.Name)
+                    limbespObject.FillTransparency = 0.5
+                    limbespObject.FillColor = color
+                    limbespObject.OutlineColor = Color3.fromRGB(255, 255, 255)
+                    limbespObject.Parent = v
+                    limbespObject.Name = "esp"
+               end
+            end
+        end
+    end
+end
+
+module.RemoveESP = function(part)
+
+    warn("> Removing ESP for "..part.Name)
+    if part:FindFirstChild("esp") then 
+        part:FindFirstChild("esp"):Destroy()
+        warn("> Removed base!")
+    end
+    for i, obj in pairs(part:GetChildren()) do 
+        if obj:FindFirstChild("esp") then 
+           obj:FindFirstChild("esp"):Destroy()
+           warn("> Removed limb ESP!")
+        end
+    end
+
+
+end
+
+module.Disconnect = function()
+    warn("> Cleaning up")
+    for i, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "esp" and v:isA("Highlight") then v:Destroy() warn(">> Cleaned Up!") end
+    end 
+end
+
+return module
