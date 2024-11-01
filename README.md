@@ -19,7 +19,7 @@ Simply add this line of code
   - Type: Either 'Outlines' or 'Fill'. How the ESP is displayed.
   - FillType: Either 'Limb' or 'Model', if 'Fill' type, weather or not the highlight is in the whole model or in every limb.
 - Adding ESP to part or characteer
-  - esp.AddEsp( <instance/part>, <color3/color>, <{configuration}> )
+  - esp.AddESU( <instance/part>, <color3/color>, <{configuration}> )
 - Removing ESP from a part or character
   - esp.RemoveESP( <instance/part> )
 - Removing all ESP
