@@ -1,4 +1,4 @@
-# Universal Roblox ESP
+# Universal Roblox ESP v1.5
 
 If you ever wanted to set up ESP as easy as 1, 2, 3? Well, this basic ESP script is what you need! With different functions, you can easily set up ESP as you desire!
 
@@ -19,7 +19,7 @@ Simply add this line of code
   - Type: Either 'Outlines' or 'Fill'. How the ESP is displayed.
   - FillType: Either 'Limb' or 'Model', if 'Fill' type, weather or not the highlight is in the whole model or in every limb.
 - Adding ESP to part or characteer
-  - esp.AddESU( <instance/part>, <color3/color>, <{configuration}> )
+  - esp.AddESP( <instance/part>, <color3/color>, <{configuration}> )
 - Removing ESP from a part or character
   - esp.RemoveESP( <instance/part> )
 - Removing all ESP
